@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="src/UsbGuard.Protocol/UsbGuard.Protocol.csproj" />
+  <Project Path="src/UsbGuard.Service/UsbGuard.Service.csproj" />
+  <Project Path="src/UsbGuard.Tray/UsbGuard.Tray.csproj" />
+</Solution>

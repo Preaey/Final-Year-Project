@@ -1,0 +1,48 @@
+[Version]
+Signature = "$Windows NT$"
+Class = "ContentScreener"
+ClassGuid = {3e3f0674-c83c-4558-bb26-9820e1eba5c5}
+Provider = %Provider%
+DriverVer = 01/01/2025,0.1.0.0
+CatalogFile = UsbGuardFilter.cat
+PnpLockdown = 1
+
+[DestinationDirs]
+DriverFiles = 13
+
+[SourceDisksNames]
+1 = %Disk%
+
+[SourceDisksFiles]
+UsbGuardFilter.sys = 1
+
+[DefaultInstall.NTamd64.10.0...26100]
+CopyFiles = DriverFiles
+
+[DefaultInstall.NTamd64.10.0...26100.Services]
+AddService = UsbGuardFilter,,Service
+
+[DriverFiles]
+UsbGuardFilter.sys
+
+[Service]
+DisplayName = %ServiceName%
+ServiceBinary = %13%\UsbGuardFilter.sys
+ServiceType = 2
+StartType = 3
+ErrorControl = 1
+LoadOrderGroup = "FSFilter Content Screener"
+Dependencies = FltMgr
+AddReg = FilterRegistry
+
+[FilterRegistry]
+HKR,"Parameters","SupportedFeatures",0x00010001,0x3
+HKR,"Parameters\Instances","DefaultInstance",0x00000000,%Instance%
+HKR,"Parameters\Instances\UsbGuard Instance","Altitude",0x00000000,"265000.731"
+HKR,"Parameters\Instances\UsbGuard Instance","Flags",0x00010001,0x0
+
+[Strings]
+Provider = "USB Guard Lab"
+Disk = "USB Guard driver package"
+ServiceName = "USB Guard minifilter"
+Instance = "UsbGuard Instance"
